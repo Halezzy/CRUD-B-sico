@@ -1,0 +1,113 @@
+create database Alunos;
+use Alunos;
+
+CREATE TABLE Aluno (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100),
+    RA VARCHAR(30),
+    CPF VARCHAR(14),
+    DT_Nasc DATE
+);
+
+
+CREATE TABLE Aluno_Login (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Aluno_ID INT,
+    Email VARCHAR(30),
+    Senha VARCHAR(30),
+    FOREIGN KEY (Aluno_ID) REFERENCES Aluno(ID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Aluno_Endereco (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Aluno_ID INT,
+    Rua VARCHAR(100),
+    Bairro VARCHAR(100),
+    CEP VARCHAR(14),
+    Pais VARCHAR(30),
+    UF VARCHAR(2),
+    FOREIGN KEY (Aluno_ID) REFERENCES Aluno(ID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Aluno_Contato(
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Aluno_ID INT,
+    Telefone VARCHAR(100),
+    Celular VARCHAR(100),
+    FOREIGN KEY (Aluno_ID) REFERENCES Aluno(ID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE Aluno_Ano(
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Aluno_ID INT,
+    Ano VARCHAR(1),
+    Turma VARCHAR(1),
+    FOREIGN KEY (Aluno_ID) REFERENCES Aluno(ID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Populando a tabela Aluno
+INSERT INTO Aluno (Nome, RA, CPF, DT_Nasc) VALUES
+('João Silva', 'RA001', '12345678901', '1990-05-15'),
+('Maria Santos', 'RA002', '98765432101', '1992-09-20'),
+('Carlos Oliveira', 'RA003', '45678901201', '1991-03-10'),
+('Ana Pereira', 'RA004', '78901234501', '1995-07-08'),
+('Paulo Souza', 'RA005', '23456789001', '1994-11-25'),
+('Juliana Lima', 'RA006', '89012345601', '1993-02-18'),
+('Fernanda Martins', 'RA007', '56789012301', '1996-06-30'),
+('Roberto Costa', 'RA008', '90123456701', '1998-04-12'),
+('Amanda Ferreira', 'RA009', '67890123401', '1997-08-05'),
+('Lucas Almeida', 'RA010', '01234567801', '1999-12-28');
+
+-- Populando a tabela Aluno_Login
+INSERT INTO Aluno_Login (Aluno_ID, Email, Senha) VALUES
+(1, 'email1@example.com', 'senha1'),
+(2, 'email2@example.com', 'senha2'),
+(3, 'email3@example.com', 'senha3'),
+(4, 'email4@example.com', 'senha4'),
+(5, 'email5@example.com', 'senha5'),
+(6, 'email6@example.com', 'senha6'),
+(7, 'email7@example.com', 'senha7'),
+(8, 'email8@example.com', 'senha8'),
+(9, 'email9@example.com', 'senha9'),
+(10, 'email10@example.com', 'senha10');
+
+-- Populando a tabela Aluno_Endereco
+INSERT INTO Aluno_Endereco (Aluno_ID, Rua, Bairro, CEP, Pais, UF) VALUES
+(1, 'Rua 1', 'Bairro 1', '12345-678', 'Brasil', 'SP'),
+(2, 'Rua 2', 'Bairro 2', '23456-789', 'Brasil', 'RJ'),
+(3, 'Rua 3', 'Bairro 3', '34567-890', 'Brasil', 'MG'),
+(4, 'Rua 4', 'Bairro 4', '45678-901', 'Brasil', 'RS'),
+(5, 'Rua 5', 'Bairro 5', '56789-012', 'Brasil', 'SC'),
+(6, 'Rua 6', 'Bairro 6', '67890-123', 'Brasil', 'PR'),
+(7, 'Rua 7', 'Bairro 7', '78901-234', 'Brasil', 'BA'),
+(8, 'Rua 8', 'Bairro 8', '89012-345', 'Brasil', 'CE'),
+(9, 'Rua 9', 'Bairro 9', '90123-456', 'Brasil', 'PA'),
+(10, 'Rua 10', 'Bairro 10', '01234-567', 'Brasil', 'GO');
+
+-- Populando a tabela Aluno_Contato
+INSERT INTO Aluno_Contato (Aluno_ID, Telefone, Celular) VALUES
+(1, '1234-5678', '98765-4321'),
+(2, '2345-6789', '87654-3210'),
+(3, '3456-7890', '76543-2109'),
+(4, '4567-8901', '65432-1098'),
+(5, '5678-9012', '54321-0987'),
+(6, '6789-0123', '43210-9876'),
+(7, '7890-1234', '32109-8765'),
+(8, '8901-2345', '21098-7654'),
+(9, '9012-3456', '10987-6543'),
+(10, '0123-4567', '09876-5432');
+
+-- Populando a tabela Aluno_Ano
+INSERT INTO Aluno_Ano (Aluno_ID, Ano, Turma) VALUES
+(1, '1', 'A'),
+(2, '1', 'B'),
+(3, '2', 'A'),
+(4, '2', 'B'),
+(5, '3', 'A'),
+(6, '3', 'B'),
+(7, '4', 'A'),
+(8, '4', 'B'),
+(9, '5', 'A'),
+(10, '5', 'B');
+
